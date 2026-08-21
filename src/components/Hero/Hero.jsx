@@ -78,7 +78,7 @@ function Hero() {
             </a>
 
             <a
-              href="#"
+              href="https://www.linkedin.com/in/h%E1%BB%93ng-tr%E1%BA%A7n-7317a3148/"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-[4px] border border-gray-900 bg-white px-6 py-3 text-[18px] font-bold leading-[150%] text-gray-900 transition-colors hover:bg-gray-100"

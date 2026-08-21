@@ -112,9 +112,8 @@ function Header() {
         <div className="flex items-center gap-3">
           {/* Desktop Download CV */}
           <a
-            // href="/cv.pdf"
-            href="#"
-            // download
+            href="/CV_Yen_Hong_Tran_Truong_Phong_DVKT_Thue.pdf"
+            download
             className={`${ANIM.fadeDown} hidden rounded-[4px] bg-gray-900 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-gray-800 sm:inline-block lg:text-[18px]`}
           >
             Download CV
@@ -176,9 +175,8 @@ function Header() {
 
         {/* Mobile Download CV */}
         <a
-          // href="/cv.pdf"
-          href="#"
-          // download
+          href="/CV_Yen_Hong_Tran_Truong_Phong_DVKT_Thue.pdf"
+          download
           className="mt-2 rounded-[4px] bg-gray-900 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-gray-800 sm:hidden"
         >
           Download CV
