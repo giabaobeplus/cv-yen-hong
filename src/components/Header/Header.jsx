@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Menu, X } from "lucide-react";
 import { ANIM, fadeDownVars, scrollToY } from "../../lib/animations";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef(null);
 
   const navLinks = [
-    { label: "Giới thiệu", href: "#gioi-thieu" },
-    { label: "Kỹ năng", href: "#ky-nang" },
-    { label: "Kinh nghiệm", href: "#kinh-nghiem" },
-    { label: "Chứng chỉ", href: "#chung-chi" },
-    { label: "Liên hệ", href: "#lien-he" },
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
+    { label: "Certificates", href: "#certificates" },
+    { label: "Contact", href: "#contact" },
   ];
 
   useEffect(() => {
@@ -22,7 +24,7 @@ function Header() {
     return () => ctx.revert();
   }, []);
 
-  // Chặn scroll nền khi mở menu mobile/tablet
+  // Prevent background scrolling when the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
 
@@ -30,6 +32,40 @@ function Header() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  // Change background, shadow, and padding when scrolling
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  // Measure real header height so Hero can subtract it, avoids offset drift
+  useEffect(() => {
+    const el = headerRef.current;
+
+    if (!el) return;
+
+    const setVar = () => {
+      document.documentElement.style.setProperty(
+        "--header-h",
+        `${el.offsetHeight}px`
+      );
+    };
+
+    setVar();
+
+    const observer = new ResizeObserver(setVar);
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
@@ -40,12 +76,15 @@ function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 overflow-visible bg-[#FFD4D0] lg:static"
+      className={`sticky top-0 z-50 overflow-visible transition-colors duration-300 ${scrolled
+        ? "bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+        : "bg-[#FFD4D0]"
+        }`}
     >
-      {/* Khối nửa hình tròn, chỉ hiện từ desktop (lg) trở lên */}
-      <div className="pointer-events-none absolute -top-25 left-1/2 hidden h-32 w-32 -translate-x-1/2 rounded-full bg-[#FC3314] lg:block" />
-
-      <div className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6 md:py-5">
+      <div
+        className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 sm:px-6 ${scrolled ? "py-3 md:py-3" : "py-4 md:py-5"
+          }`}
+      >
         {/* Logo */}
         <a
           href="#"
@@ -56,7 +95,7 @@ function Header() {
           <span className="font-semibold text-gray-900">enHong</span>
         </a>
 
-        {/* Desktop nav */}
+        {/* Desktop navigation */}
         <nav className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
             <a
@@ -73,34 +112,24 @@ function Header() {
         <div className="flex items-center gap-3">
           {/* Desktop Download CV */}
           <a
-            href="/cv.pdf"
-            download
+            // href="/cv.pdf"
+            href="#"
+            // download
             className={`${ANIM.fadeDown} hidden rounded-[4px] bg-gray-900 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-gray-800 sm:inline-block lg:text-[18px]`}
           >
             Download CV
           </a>
 
-          {/* Hamburger, ẩn khi panel đang mở và ẩn trên desktop */}
+          {/* Hamburger */}
           {!menuOpen && (
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
               className={`${ANIM.fadeDown} relative z-50 flex h-10 w-10 items-center justify-center rounded-[4px] text-gray-900 lg:hidden`}
-              aria-label="Mở menu"
+              aria-label="Open menu"
+              aria-expanded={false}
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <Menu className="h-6 w-6" strokeWidth={2} />
             </button>
           )}
         </div>
@@ -109,39 +138,31 @@ function Header() {
       {/* Overlay */}
       <div
         onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 lg:hidden ${
-          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 lg:hidden ${menuOpen
+          ? "opacity-100"
+          : "pointer-events-none opacity-0"
+          }`}
       />
 
-      {/* Slide panel */}
+      {/* Mobile / Tablet slide panel */}
       <nav
-        className={`fixed inset-y-0 right-0 z-40 flex w-full flex-col gap-1 bg-[#FFD4D0] px-6 pb-6 pt-6 shadow-xl transition-transform duration-300 ease-in-out sm:w-96 lg:hidden ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-y-0 right-0 z-40 flex w-full flex-col gap-1 bg-[#FFD4D0] px-6 pb-6 pt-6 shadow-xl transition-transform duration-300 ease-in-out sm:w-96 lg:hidden ${menuOpen
+          ? "translate-x-0"
+          : "translate-x-full"
+          }`}
       >
-        {/* Nút đóng panel */}
+        {/* Close button */}
         <button
           type="button"
           onClick={() => setMenuOpen(false)}
-          className="mb-4 flex h-10 w-10 items-center justify-center self-end rounded-[4px] text-gray-900"
-          aria-label="Đóng menu"
+          className="mb-4 flex h-10 w-10 items-center justify-center self-end rounded-[4px] text-gray-900 transition-colors hover:bg-white/40"
+          aria-label="Close menu"
+          aria-expanded={menuOpen}
         >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <X className="h-6 w-6" strokeWidth={2} />
         </button>
 
+        {/* Mobile / Tablet navigation */}
         {navLinks.map((link) => (
           <a
             key={link.href}
@@ -153,10 +174,11 @@ function Header() {
           </a>
         ))}
 
-        {/* Mobile/tablet Download CV */}
+        {/* Mobile Download CV */}
         <a
-          href="/cv.pdf"
-          download
+          // href="/cv.pdf"
+          href="#"
+          // download
           className="mt-2 rounded-[4px] bg-gray-900 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-gray-800 sm:hidden"
         >
           Download CV

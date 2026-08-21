@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ChevronUp } from "lucide-react";
 import { scrollToY } from "../../lib/animations";
 
 function BackToTop() {
@@ -22,9 +23,7 @@ function BackToTop() {
           : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-      </svg>
+      <ChevronUp className="h-5 w-5" strokeWidth={2.5} />
     </button>
   );
 }
