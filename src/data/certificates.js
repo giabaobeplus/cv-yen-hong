@@ -6,20 +6,23 @@ export const certificatesIntro = [
 
 export const certificatesList = [
     {
-        id: "certificate-1",
-        title: "Accounting Practice Certificate (APC)",
-        image: "/certificates/certificate-1.png",
+        id: "certificate-3",
+        title: "Tax Agent Practicing Certificate",
+        image: "/certificates/certificate-3.png",
     },
+
     {
         id: "certificate-2",
         title: "Chief Accountant Certificate",
         image: "/certificates/certificate-2.png",
     },
+
     {
-        id: "certificate-3",
-        title: "Tax Agent Practicing Certificate",
-        image: "/certificates/certificate-3.png",
+        id: "certificate-1",
+        title: "Accounting Practice Certificate (APC)",
+        image: "/certificates/certificate-1.png",
     },
+
     {
         id: "certificate-4",
         title: "Bachelor of Accounting",
