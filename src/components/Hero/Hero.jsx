@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import {
   ANIM,
@@ -21,6 +21,34 @@ function Hero() {
     }, sectionRef);
 
     return () => ctx.revert();
+  }, []);
+
+  // Native smooth scroll — works reliably on real mobile devices
+  const handleHireMe = useCallback((e) => {
+    e.preventDefault();
+
+    const target = document.getElementById("contact");
+    if (!target) return;
+
+    const supportsSmoothScroll =
+      "scrollBehavior" in document.documentElement.style;
+
+    const headerOffset =
+      parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--header-h"
+        ),
+        10
+      ) || 80;
+
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.scrollTo({
+      top,
+      left: 0,
+      behavior: supportsSmoothScroll ? "smooth" : "auto",
+    });
   }, []);
 
   return (
@@ -72,6 +100,8 @@ function Hero() {
           >
             <a
               href="#contact"
+              onClick={handleHireMe}
+              style={{ touchAction: "manipulation" }}
               className="rounded-[4px] bg-gray-900 px-6 py-3 text-[18px] font-bold leading-[150%] text-white transition-colors hover:bg-gray-800"
             >
               Hire Me
