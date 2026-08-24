@@ -1,25 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { ChevronUp } from "lucide-react";
-import { scrollToY } from "../../lib/animations";
 
 function BackToTop() {
   const [visible, setVisible] = useState(false);
 
-  // hiện nút sau khi scroll qua khỏi header
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleScrollToTop = useCallback(() => {
+    const supportsSmoothScroll =
+      "scrollBehavior" in document.documentElement.style;
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: supportsSmoothScroll ? "smooth" : "auto",
+    });
   }, []);
 
   return (
     <button
       type="button"
-      onClick={() => scrollToY(0)}
+      onClick={handleScrollToTop}
       aria-label="Về đầu trang"
-      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-all duration-300 hover:bg-gray-800 ${
+      style={{ touchAction: "manipulation" }}
+      className={`fixed bottom-6 right-6 z-[60] flex h-12 w-12 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-all duration-300 hover:bg-gray-800 ${
         visible
-          ? "translate-y-0 opacity-100 points-auto"
+          ? "translate-y-0 opacity-100 pointer-events-auto"
           : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >
