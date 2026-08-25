@@ -4,6 +4,7 @@ import {
   ANIM,
   fadeUpVars,
   scaleInVars,
+  scrollToY,
 } from "../../lib/animations";
 
 function Hero() {
@@ -23,15 +24,14 @@ function Hero() {
     return () => ctx.revert();
   }, []);
 
-  // Native smooth scroll — works reliably on real mobile devices
+  // Smooth scroll through ScrollSmoother
+  // Falls back to native scroll if ScrollSmoother is not ready
   const handleHireMe = useCallback((e) => {
     e.preventDefault();
 
     const target = document.getElementById("contact");
-    if (!target) return;
 
-    const supportsSmoothScroll =
-      "scrollBehavior" in document.documentElement.style;
+    if (!target) return;
 
     const headerOffset =
       parseInt(
@@ -42,13 +42,11 @@ function Hero() {
       ) || 80;
 
     const top =
-      target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      headerOffset;
 
-    window.scrollTo({
-      top,
-      left: 0,
-      behavior: supportsSmoothScroll ? "smooth" : "auto",
-    });
+    scrollToY(top);
   }, []);
 
   return (
@@ -72,6 +70,7 @@ function Hero() {
             className={`${ANIM.fadeUp} mb-6 text-[32px] font-bold leading-[150%] text-[#1F1F1F] sm:text-[40px] md:text-[48px]`}
           >
             <span className="block">👋 Hello, I’m</span>
+
             <span className="block text-[#FC3314]">
               Tran Thi Yen Hong
             </span>

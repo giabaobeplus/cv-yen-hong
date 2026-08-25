@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { gsap } from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -82,9 +83,21 @@ function CertificateLightbox({ items, activeIndex, onClose }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mounted]);
 
+    // #smooth-content (App.jsx) bị GSAP ScrollSmoother gắn CSS "transform" để
+    // tạo hiệu ứng cuộn mượt. Theo spec CSS, một ancestor có "transform" sẽ
+    // trở thành containing block cho các phần tử con "position: fixed" — tức
+    // là "fixed" bên trong đó không còn neo theo viewport nữa, mà neo theo
+    // chính div (cao bằng cả trang) đó. Đây chính là lý do lightbox trước đây
+    // chỉ hiện overlay đen: nội dung ảnh bị canh giữa theo chiều cao TOÀN
+    // TRANG thay vì theo viewport, nên trôi ra ngoài màn hình.
+    //
+    // Cách sửa đúng: portal lightbox ra thẳng document.body, NẰM NGOÀI
+    // #smooth-content, để "fixed" lại neo theo viewport thật như bình
+    // thường. Cố tình KHÔNG khoá scroll/pause ScrollSmoother khi mở modal —
+    // vẫn để nền cuộn bình thường, tránh giật khi mở/đóng lightbox.
     if (!mounted || activeIndex === null) return null;
 
-    return (
+    return createPortal(
         <div
             className={`fixed inset-0 z-50 flex items-center justify-center bg-black/85 px-4 py-10 backdrop-blur-sm transition-opacity duration-350 ease-out ${
                 visible ? "opacity-100" : "opacity-0"
@@ -154,7 +167,8 @@ function CertificateLightbox({ items, activeIndex, onClose }) {
                     background: #FC3314;
                 }
             `}</style>
-        </div>
+        </div>,
+        document.body
     );
 }
 

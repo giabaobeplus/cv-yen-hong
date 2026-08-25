@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { Menu, X } from "lucide-react";
-import { ANIM, fadeDownVars } from "../../lib/animations";
+import { ANIM, fadeDownVars, scrollToY } from "../../lib/animations";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +16,7 @@ function Header() {
     { label: "Contact", href: "#contact" },
   ];
 
+  // Header entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(`.${ANIM.fadeDown}`, fadeDownVars);
@@ -67,30 +68,22 @@ function Header() {
     return () => observer.disconnect();
   }, []);
 
-  // Native smooth scroll — works reliably on real mobile devices
+  // Smooth scroll through ScrollSmoother
+  // Falls back to native scroll if ScrollSmoother is not ready
   const handleNavClick = useCallback((e, href) => {
     e.preventDefault();
     setMenuOpen(false);
 
     // Logo click → scroll to top
     if (href === 0 || href === "#" || href === "") {
-      const supportsSmoothScroll =
-        "scrollBehavior" in document.documentElement.style;
-
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: supportsSmoothScroll ? "smooth" : "auto",
-      });
+      scrollToY(0);
       return;
     }
 
     const id = typeof href === "string" ? href.replace("#", "") : "";
     const target = document.getElementById(id);
-    if (!target) return;
 
-    const supportsSmoothScroll =
-      "scrollBehavior" in document.documentElement.style;
+    if (!target) return;
 
     const headerOffset =
       parseInt(
@@ -101,28 +94,24 @@ function Header() {
       ) || 80;
 
     const top =
-      target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      headerOffset;
 
-    window.scrollTo({
-      top,
-      left: 0,
-      behavior: supportsSmoothScroll ? "smooth" : "auto",
-    });
+    scrollToY(top);
   }, []);
 
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-50 overflow-visible transition-colors duration-300 ${
-        scrolled
+      className={`fixed left-0 right-0 top-0 z-50 overflow-visible transition-colors duration-300 ${scrolled
           ? "bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
           : "bg-[#FFD4D0]"
-      }`}
+        }`}
     >
       <div
-        className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 sm:px-6 ${
-          scrolled ? "py-3 md:py-3" : "py-4 md:py-5"
-        }`}
+        className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 sm:px-6 ${scrolled ? "py-3 md:py-3" : "py-4 md:py-5"
+          }`}
       >
         {/* Logo */}
         <a
@@ -178,16 +167,16 @@ function Header() {
       {/* Overlay */}
       <div
         onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 lg:hidden ${
-          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 lg:hidden ${menuOpen
+            ? "opacity-100"
+            : "pointer-events-none opacity-0"
+          }`}
       />
 
       {/* Mobile / Tablet slide panel */}
       <nav
-        className={`fixed inset-y-0 right-0 z-40 flex w-full flex-col gap-1 bg-[#FFD4D0] px-6 pb-6 pt-6 shadow-xl transition-transform duration-300 ease-in-out sm:w-96 lg:hidden ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-y-0 right-0 z-40 flex w-full flex-col gap-1 bg-[#FFD4D0] px-6 pb-6 pt-6 shadow-xl transition-transform duration-300 ease-in-out sm:w-96 lg:hidden ${menuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Close button */}
         <button

@@ -1,8 +1,8 @@
 import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 // class hook để target phần tử cần animate bằng gsap
 export const ANIM = {
@@ -34,11 +34,24 @@ export const scaleInVars = {
   ease: "power3.out",
 };
 
-// scroll mượt tới 1 vị trí, y có thể là số (0 = đầu trang) hoặc selector "#id"
+// Cuộn mượt tới 1 vị trí y (px tính từ đầu trang). Ưu tiên dùng ScrollSmoother
+// (khởi tạo trong App.jsx qua useSmoothScroll) để đồng bộ với độ trễ/ease
+// chung của toàn trang; nếu ScrollSmoother chưa sẵn sàng hoặc bị tắt (ví dụ
+// prefers-reduced-motion) thì fallback về scroll native của trình duyệt.
 export const scrollToY = (y) => {
-  gsap.to(window, {
-    duration: 1,
-    scrollTo: { y, autoKill: true },
-    ease: "power2.inOut",
+  const smoother = ScrollSmoother.get();
+
+  if (smoother) {
+    smoother.scrollTo(y, true);
+    return;
+  }
+
+  const supportsSmoothScroll =
+    "scrollBehavior" in document.documentElement.style;
+
+  window.scrollTo({
+    top: y,
+    left: 0,
+    behavior: supportsSmoothScroll ? "smooth" : "auto",
   });
 };
