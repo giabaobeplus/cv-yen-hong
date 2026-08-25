@@ -1,11 +1,17 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 import { ANIM, fadeUpVars } from "../../lib/animations";
-import { aboutParagraphs, aboutStats } from "../../data/about";
 import Counter from "../Counter/Counter";
 
 function About() {
+    const { t } = useTranslation();
     const sectionRef = useRef(null);
+
+    // returnObjects: true để lấy nguyên mảng/object lồng nhau từ file JSON
+    // ngôn ngữ, thay vì chuỗi phẳng như các key t() thông thường.
+    const aboutParagraphs = t("about.paragraphs", { returnObjects: true });
+    const aboutStats = t("about.stats", { returnObjects: true });
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -31,7 +37,7 @@ function About() {
                 <h2
                     className={`${ANIM.fadeUp} mb-8 text-[28px] font-extrabold leading-[130%] text-white sm:text-[32px] md:text-[36px]`}
                 >
-                    About Me
+                    {t("about.title")}
                 </h2>
 
                 <div className="mb-12 space-y-5 sm:mb-16">

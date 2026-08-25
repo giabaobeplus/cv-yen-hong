@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 import { ANIM, fadeUpVars } from "../../lib/animations";
-import { journeyIntro, journeyList } from "../../data/journey";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,7 +36,11 @@ const CONTAINER_HEIGHT_BUFFER = 64;
 const DEFAULT_CONTAINER_HEIGHT = 580;
 
 function Journey() {
+    const { t } = useTranslation();
     const sectionRef = useRef(null);
+
+    const journeyIntro = t("journey", { returnObjects: true });
+    const journeyList = journeyIntro.list;
 
     const pathRef = useRef(null);
     const dotRefs = useRef([]);
@@ -252,37 +256,37 @@ function Journey() {
                     }
                 });
 
-             gsap.to(path, {
-    strokeDashoffset: 0,
-    ease: "none",
-    scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 62%",
-        end: "+=500",
-        scrub: 0.5,
-        onUpdate: (self) => {
-            const progress = self.progress;
+                gsap.to(path, {
+                    strokeDashoffset: 0,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 62%",
+                        end: "+=500",
+                        scrub: 0.5,
+                        onUpdate: (self) => {
+                            const progress = self.progress;
 
-            dotFracs.current.forEach((frac, index) => {
-                const revealTl = revealTimelines.current[index];
-                if (!revealTl || frac === undefined) return;
+                            dotFracs.current.forEach((frac, index) => {
+                                const revealTl = revealTimelines.current[index];
+                                if (!revealTl || frac === undefined) return;
 
-                const shouldReveal = progress >= frac;
+                                const shouldReveal = progress >= frac;
 
-                if (shouldReveal && !dotStates.current[index]) {
-                    dotStates.current[index] = true;
-                    revealTl.play();
-                } else if (
-                    !shouldReveal &&
-                    dotStates.current[index]
-                ) {
-                    dotStates.current[index] = false;
-                    revealTl.reverse();
-                }
-            });
-        },
-    },
-});
+                                if (shouldReveal && !dotStates.current[index]) {
+                                    dotStates.current[index] = true;
+                                    revealTl.play();
+                                } else if (
+                                    !shouldReveal &&
+                                    dotStates.current[index]
+                                ) {
+                                    dotStates.current[index] = false;
+                                    revealTl.reverse();
+                                }
+                            });
+                        },
+                    },
+                });
             }
         }, sectionRef);
 

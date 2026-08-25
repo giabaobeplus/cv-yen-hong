@@ -1,19 +1,45 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
+
 import { ANIM, fadeDownVars, scrollToY } from "../../lib/animations";
+import LanguageToggle from "../LanguageToggle/LanguageToggle";
 
 function Header() {
+  const { t } = useTranslation();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   const headerRef = useRef(null);
 
   const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Certificates", href: "#certificates" },
-    { label: "Contact", href: "#contact" },
+    {
+      key: "about",
+      label: t("header.nav.about"),
+      href: "#about",
+    },
+    {
+      key: "skills",
+      label: t("header.nav.skills"),
+      href: "#skills",
+    },
+    {
+      key: "experience",
+      label: t("header.nav.experience"),
+      href: "#experience",
+    },
+    {
+      key: "certificates",
+      label: t("header.nav.certificates"),
+      href: "#certificates",
+    },
+    {
+      key: "contact",
+      label: t("header.nav.contact"),
+      href: "#contact",
+    },
   ];
 
   // Header entrance animation
@@ -40,7 +66,9 @@ function Header() {
       setScrolled(window.scrollY > 0);
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -72,6 +100,7 @@ function Header() {
   // Falls back to native scroll if ScrollSmoother is not ready
   const handleNavClick = useCallback((e, href) => {
     e.preventDefault();
+
     setMenuOpen(false);
 
     // Logo click → scroll to top
@@ -104,14 +133,16 @@ function Header() {
   return (
     <header
       ref={headerRef}
-      className={`fixed left-0 right-0 top-0 z-50 overflow-visible transition-colors duration-300 ${scrolled
+      className={`fixed left-0 right-0 top-0 z-50 overflow-visible transition-colors duration-300 ${
+        scrolled
           ? "bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
           : "bg-[#FFD4D0]"
-        }`}
+      }`}
     >
       <div
-        className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 sm:px-6 ${scrolled ? "py-3 md:py-3" : "py-4 md:py-5"
-          }`}
+        className={`relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 sm:px-6 ${
+          scrolled ? "py-3 md:py-3" : "py-4 md:py-5"
+        }`}
       >
         {/* Logo */}
         <a
@@ -128,7 +159,7 @@ function Header() {
         <nav className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
             <a
-              key={link.href}
+              key={link.key}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               style={{ touchAction: "manipulation" }}
@@ -146,8 +177,14 @@ function Header() {
             download
             className={`${ANIM.fadeDown} hidden rounded-[4px] bg-gray-900 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-gray-800 sm:inline-block lg:text-[18px]`}
           >
-            Download CV
+            {t("header.downloadCv")}
           </a>
+
+          {/* Language toggle - bên phải nút Download CV */}
+          <LanguageToggle
+            className={ANIM.fadeDown}
+            scrolled={scrolled}
+          />
 
           {/* Hamburger */}
           {!menuOpen && (
@@ -158,7 +195,10 @@ function Header() {
               aria-label="Open menu"
               aria-expanded={false}
             >
-              <Menu className="h-6 w-6" strokeWidth={2} />
+              <Menu
+                className="h-6 w-6"
+                strokeWidth={2}
+              />
             </button>
           )}
         </div>
@@ -167,16 +207,20 @@ function Header() {
       {/* Overlay */}
       <div
         onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 lg:hidden ${menuOpen
+        className={`fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 lg:hidden ${
+          menuOpen
             ? "opacity-100"
             : "pointer-events-none opacity-0"
-          }`}
+        }`}
       />
 
       {/* Mobile / Tablet slide panel */}
       <nav
-        className={`fixed inset-y-0 right-0 z-40 flex w-full flex-col gap-1 bg-[#FFD4D0] px-6 pb-6 pt-6 shadow-xl transition-transform duration-300 ease-in-out sm:w-96 lg:hidden ${menuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed inset-y-0 right-0 z-40 flex w-full flex-col gap-1 bg-[#FFD4D0] px-6 pb-6 pt-6 shadow-xl transition-transform duration-300 ease-in-out sm:w-96 lg:hidden ${
+          menuOpen
+            ? "translate-x-0"
+            : "translate-x-full"
+        }`}
       >
         {/* Close button */}
         <button
@@ -186,13 +230,16 @@ function Header() {
           aria-label="Close menu"
           aria-expanded={menuOpen}
         >
-          <X className="h-6 w-6" strokeWidth={2} />
+          <X
+            className="h-6 w-6"
+            strokeWidth={2}
+          />
         </button>
 
         {/* Mobile / Tablet navigation */}
         {navLinks.map((link) => (
           <a
-            key={link.href}
+            key={link.key}
             href={link.href}
             onClick={(e) => handleNavClick(e, link.href)}
             style={{ touchAction: "manipulation" }}
@@ -208,7 +255,7 @@ function Header() {
           download
           className="mt-2 rounded-[4px] bg-gray-900 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-gray-800 sm:hidden"
         >
-          Download CV
+          {t("header.downloadCv")}
         </a>
       </nav>
     </header>

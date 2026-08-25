@@ -38,11 +38,11 @@ export const scaleInVars = {
 // (khởi tạo trong App.jsx qua useSmoothScroll) để đồng bộ với độ trễ/ease
 // chung của toàn trang; nếu ScrollSmoother chưa sẵn sàng hoặc bị tắt (ví dụ
 // prefers-reduced-motion) thì fallback về scroll native của trình duyệt.
-export const scrollToY = (y) => {
+export const scrollToY = (y, animate = true) => {
   const smoother = ScrollSmoother.get();
 
   if (smoother) {
-    smoother.scrollTo(y, true);
+    smoother.scrollTo(y, animate);
     return;
   }
 
@@ -52,6 +52,6 @@ export const scrollToY = (y) => {
   window.scrollTo({
     top: y,
     left: 0,
-    behavior: supportsSmoothScroll ? "smooth" : "auto",
+    behavior: animate && supportsSmoothScroll ? "smooth" : "auto",
   });
 };

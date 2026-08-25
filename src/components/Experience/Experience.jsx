@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 import { ANIM, fadeUpVars } from "../../lib/animations";
-import { experienceIntro } from "../../data/experience";
 
 function Experience() {
+    const { t } = useTranslation();
     const sectionRef = useRef(null);
 
     useEffect(() => {
@@ -29,13 +30,13 @@ function Experience() {
                 <h2
                     className={`${ANIM.fadeUp} mb-6 text-[28px] font-extrabold leading-[130%] text-[#1F1F1F] sm:text-[32px] md:text-[36px]`}
                 >
-                    Work Experience
+                    {t("experience.title")}
                 </h2>
 
                 <p
                     className={`${ANIM.fadeUp} text-base leading-[150%] text-gray-700 sm:text-[18px] md:text-[20px]`}
                 >
-                    {experienceIntro}
+                    {t("experience.intro")}
                 </p>
             </div>
         </section>

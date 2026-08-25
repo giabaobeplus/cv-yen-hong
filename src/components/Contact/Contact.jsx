@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 import { Phone, Mail, MapPin, Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
+
 import { ANIM, fadeUpVars } from "../../lib/animations";
 
 /* Brand icons — lucide-react v1 removed official brand logos */
@@ -54,7 +56,10 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{7,15}$/;
 
 function Contact() {
+  const { t } = useTranslation();
+
   const sectionRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,9 +67,11 @@ function Contact() {
     message: "",
     botcheck: "",
   });
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Contact section animation
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(`.${ANIM.fadeUp}`, {
@@ -79,9 +86,15 @@ function Contact() {
     return () => ctx.revert();
   }, []);
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
     if (errors[name]) {
       setErrors((prev) => {
         const next = { ...prev };
@@ -91,33 +104,38 @@ function Contact() {
     }
   };
 
+  // Validate form
   const validate = () => {
     const next = {};
 
     if (!formData.name.trim()) {
-      next.name = "Full name is required.";
+      next.name = t("contact.form.errors.nameRequired");
     }
 
     if (!formData.email.trim()) {
-      next.email = "Email is required.";
+      next.email = t("contact.form.errors.emailRequired");
     } else if (!EMAIL_REGEX.test(formData.email.trim())) {
-      next.email = "Please enter a valid email address.";
+      next.email = t("contact.form.errors.emailInvalid");
     }
 
     if (!formData.phone.trim()) {
-      next.phone = "Phone number is required.";
+      next.phone = t("contact.form.errors.phoneRequired");
     } else if (!PHONE_REGEX.test(formData.phone.trim())) {
-      next.phone = "Please enter a valid phone number.";
+      next.phone = t("contact.form.errors.phoneInvalid");
     }
 
     setErrors(next);
+
     return Object.keys(next).length === 0;
   };
 
+  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Honeypot protection
     if (formData.botcheck) return;
+
     if (!validate()) return;
 
     setIsSubmitting(true);
@@ -145,7 +163,8 @@ function Contact() {
       const data = await res.json();
 
       if (data.success) {
-        toast.success("Thank you! Your message has been sent successfully.");
+        toast.success(t("contact.toast.success"));
+
         setFormData({
           name: "",
           email: "",
@@ -153,23 +172,29 @@ function Contact() {
           message: "",
           botcheck: "",
         });
+
         setErrors({});
       } else {
-        toast.error(data.message || "Something went wrong. Please try again.");
+        toast.error(
+          data.message || t("contact.toast.genericError")
+        );
       }
     } catch (err) {
       console.error(err);
-      toast.error("Failed to send message. Please try again later.");
+      toast.error(t("contact.toast.sendFailed"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // 16px on mobile to prevent iOS auto-zoom; keep 15px from sm up if preferred
+  // 16px on mobile to prevent iOS auto-zoom
   const inputBase =
     "w-full rounded-[4px] border-0 bg-white px-4 py-3.5 text-base text-[#1F1F1F] placeholder:text-gray-400 outline-none ring-0 transition focus:ring-2 disabled:opacity-70 sm:text-[15px]";
+
   const inputOk = "focus:ring-[#FC3314]/40";
-  const inputErr = "ring-2 ring-red-500 focus:ring-red-500";
+
+  const inputErr =
+    "ring-2 ring-red-500 focus:ring-red-500";
 
   return (
     <section
@@ -183,46 +208,60 @@ function Contact() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:items-center">
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
         {/* Left */}
         <div className={ANIM.fadeUp}>
           <h2 className="mb-5 text-[28px] font-extrabold leading-[130%] text-[#1F1F1F] sm:text-[32px] md:text-[36px]">
-            Let&apos;s Collaborate
+            {t("contact.title")}
           </h2>
 
           <p className="mb-8 max-w-md text-base leading-[160%] text-[#1F1F1F]/90 sm:text-[17px] md:text-[18px]">
-            If you are looking for a partner in corporate accounting and
-            finance, I am always ready to connect and build effective, lasting
-            solutions together.
+            {t("contact.description")}
           </p>
 
+          {/* Contact information */}
           <ul className="mb-10 space-y-4">
             <li className="flex items-center gap-3 text-[#1F1F1F]">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/70">
-                <Phone className="h-4 w-4" strokeWidth={2} />
+                <Phone
+                  className="h-4 w-4"
+                  strokeWidth={2}
+                />
               </span>
+
               <span className="text-[15px] font-medium sm:text-base">
-                0703 495 205
+                {t("contact.phone")}
               </span>
             </li>
+
             <li className="flex items-center gap-3 text-[#1F1F1F]">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/70">
-                <Mail className="h-4 w-4" strokeWidth={2} />
+                <Mail
+                  className="h-4 w-4"
+                  strokeWidth={2}
+                />
               </span>
+
               <span className="text-[15px] font-medium sm:text-base">
-                yenhong178@gmail.com
+                {t("contact.email")}
               </span>
             </li>
+
             <li className="flex items-center gap-3 text-[#1F1F1F]">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/70">
-                <MapPin className="h-4 w-4" strokeWidth={2} />
+                <MapPin
+                  className="h-4 w-4"
+                  strokeWidth={2}
+                />
               </span>
+
               <span className="text-[15px] font-medium sm:text-base">
-                Ho Chi Minh City
+                {t("contact.location")}
               </span>
             </li>
           </ul>
 
+          {/* Social links */}
           <div className="flex items-center gap-3">
             {socials.map(({ icon: Icon, href, label }) => (
               <a
@@ -245,6 +284,7 @@ function Contact() {
           className={`${ANIM.fadeUp} flex flex-col gap-4`}
           noValidate
         >
+          {/* Honeypot */}
           <input
             type="text"
             name="botcheck"
@@ -256,75 +296,112 @@ function Contact() {
             aria-hidden="true"
           />
 
+          {/* Name */}
           <div>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Full name"
+              placeholder={t(
+                "contact.form.namePlaceholder"
+              )}
               disabled={isSubmitting}
               aria-invalid={!!errors.name}
-              aria-describedby={errors.name ? "err-name" : undefined}
-              className={`${inputBase} ${errors.name ? inputErr : inputOk}`}
+              aria-describedby={
+                errors.name ? "err-name" : undefined
+              }
+              className={`${inputBase} ${
+                errors.name ? inputErr : inputOk
+              }`}
             />
+
             {errors.name && (
-              <p id="err-name" className="mt-1.5 text-sm font-medium text-red-600">
+              <p
+                id="err-name"
+                className="mt-1.5 text-sm font-medium text-red-600"
+              >
                 {errors.name}
               </p>
             )}
           </div>
 
+          {/* Email */}
           <div>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Email"
+              placeholder={t(
+                "contact.form.emailPlaceholder"
+              )}
               disabled={isSubmitting}
               aria-invalid={!!errors.email}
-              aria-describedby={errors.email ? "err-email" : undefined}
-              className={`${inputBase} ${errors.email ? inputErr : inputOk}`}
+              aria-describedby={
+                errors.email ? "err-email" : undefined
+              }
+              className={`${inputBase} ${
+                errors.email ? inputErr : inputOk
+              }`}
             />
+
             {errors.email && (
-              <p id="err-email" className="mt-1.5 text-sm font-medium text-red-600">
+              <p
+                id="err-email"
+                className="mt-1.5 text-sm font-medium text-red-600"
+              >
                 {errors.email}
               </p>
             )}
           </div>
 
+          {/* Phone */}
           <div>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="Phone number"
+              placeholder={t(
+                "contact.form.phonePlaceholder"
+              )}
               disabled={isSubmitting}
               aria-invalid={!!errors.phone}
-              aria-describedby={errors.phone ? "err-phone" : undefined}
-              className={`${inputBase} ${errors.phone ? inputErr : inputOk}`}
+              aria-describedby={
+                errors.phone ? "err-phone" : undefined
+              }
+              className={`${inputBase} ${
+                errors.phone ? inputErr : inputOk
+              }`}
             />
+
             {errors.phone && (
-              <p id="err-phone" className="mt-1.5 text-sm font-medium text-red-600">
+              <p
+                id="err-phone"
+                className="mt-1.5 text-sm font-medium text-red-600"
+              >
                 {errors.phone}
               </p>
             )}
           </div>
 
+          {/* Message */}
           <div>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               rows={5}
-              placeholder="Your message"
+              placeholder={t(
+                "contact.form.messagePlaceholder"
+              )}
               disabled={isSubmitting}
               className={`${inputBase} resize-none ${inputOk}`}
             />
           </div>
 
+          {/* Submit */}
           <button
             type="submit"
             disabled={isSubmitting}
@@ -337,7 +414,7 @@ function Contact() {
                 aria-hidden="true"
               />
             ) : (
-              "Send Message"
+              t("contact.form.submit")
             )}
           </button>
         </form>

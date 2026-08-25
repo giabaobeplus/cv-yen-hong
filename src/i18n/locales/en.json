@@ -1,0 +1,187 @@
+{
+  "header": {
+    "nav": {
+      "about": "About",
+      "skills": "Skills",
+      "experience": "Experience",
+      "certificates": "Certificates",
+      "contact": "Contact"
+    },
+    "downloadCv": "Download CV"
+  },
+  "hero": {
+    "greeting": "👋 Hello, I’m",
+    "name": "Tran Thi Yen Hong",
+    "paragraph1": "A Bachelor of Accounting graduate from the University of Economics Ho Chi Minh City (UEH), with over 5 years of experience in accounting, taxation, and corporate financial management.",
+    "paragraph2": "Aspiring to advance my career as a Chief Accountant or Finance Manager, with a strong focus on financial control, operational optimization, and sustainable business growth.",
+    "hireMe": "Hire Me",
+    "linkedin": "LinkedIn"
+  },
+  "about": {
+    "title": "About Me",
+    "paragraphs": [
+      [
+        { "text": "Head of Accounting Services with " },
+        { "text": "over 5 years of experience", "bold": true },
+        { "text": " in accounting, taxation, auditing, and corporate accounting services." }
+      ],
+      [
+        { "text": "Experienced in working with businesses across various industries, including commerce, manufacturing, services, FDI, and e-commerce, as well as handling tax finalization for businesses with annual revenue of up to " },
+        { "text": "VND 500 billion", "bold": true },
+        { "text": "." }
+      ]
+    ],
+    "stats": [
+      { "value": 500, "suffix": "", "label": "Billion VND in tax finalization" },
+      { "value": 5, "suffix": "+", "label": "Years of professional experience" },
+      { "value": 30, "suffix": "+", "label": "Clients & businesses served" }
+    ]
+  },
+  "skills": {
+    "title": "Professional Skills",
+    "intro": [
+      [
+        { "text": "Holder of the " },
+        { "text": "Accounting Practice Certificate (APC)", "bold": true },
+        { "text": " – Ministry of Finance (2025), qualified for the Chief Accountant role." }
+      ],
+      [
+        { "text": "Currently pursuing the " },
+        { "text": "Certified Public Accountant (CPA) qualification", "bold": true },
+        { "text": " to further strengthen expertise in risk control and financial standards." }
+      ]
+    ],
+    "list": [
+      {
+        "icon": "FileBarChart2",
+        "title": "Financial Reporting",
+        "description": "Preparing and analyzing financial statements, helping businesses track performance and optimize operating costs."
+      },
+      {
+        "icon": "ListChecks",
+        "title": "Internal Control",
+        "description": "Building internal control processes that reduce financial risk and improve transparency across business operations."
+      },
+      {
+        "icon": "Receipt",
+        "title": "Tax Compliance",
+        "description": "Monitoring and fulfilling tax obligations, ensuring accurate filings and records while optimizing financial efficiency."
+      },
+      {
+        "icon": "Users",
+        "title": "Audit Leadership",
+        "description": "Managing accounting teams with a professional approach, driving performance and a strong sense of responsibility."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Work Experience",
+    "intro": "A track record of hands-on experience in corporate accounting and finance, with a focus on operational control, tax management, and building efficient accounting systems."
+  },
+  "journey": {
+    "eyebrow": "Professional Growth Journey",
+    "heading": "Growing Through Every Career Stage",
+    "description": "Specialized in financial reporting, tax, and operational control. Experienced in cost optimization and building accounting systems.",
+    "list": [
+      {
+        "number": "1",
+        "company": "BBF Vietnam Co., Ltd",
+        "role": "Accounting Specialist",
+        "period": "08/2019 – 01/2022",
+        "bullets": [
+          "Prepared tax reports (VAT, PIT, CIT) and annual financial statements.",
+          "Recorded accounting entries and verified the validity of documents.",
+          "Tracked accounts receivable and payable.",
+          "Handled banking transactions.",
+          "Calculated payroll, social insurance, and personal income tax.",
+          "Assisted with audit tasks: inventory counts, confirmation letters, and documentation preparation."
+        ]
+      },
+      {
+        "number": "2",
+        "company": "Tax Uy Danh Consulting Services Co., Ltd",
+        "role": "HR Manager / General Accountant",
+        "period": "02/2022 – 04/2023",
+        "bullets": [
+          "Prepared financial statements, tax reports, and general accounting records.",
+          "Reviewed tax reports, identifying and resolving tax risks.",
+          "Advised clients on tax matters and cost optimization.",
+          "Contributed to building accounting and tax processes.",
+          "Supported training and quality control for the accounting team."
+        ]
+      },
+      {
+        "number": "3",
+        "company": "PAC Pham Gia Co., Ltd",
+        "role": "Head of Accounting Services",
+        "period": "05/2023 – Present",
+        "bullets": [
+          "Managed a team of 5, overseeing accounting and tax services for ~30 clients.",
+          "Reviewed financial statements, tax declarations, and finalizations for large-scale businesses (up to VND 500 billion/year).",
+          "Liaised with tax authorities during inspections and finalizations.",
+          "Handled tax refunds, related-party transactions, and PIT for foreign employees.",
+          "Controlled tax risk and advised on cost optimization.",
+          "Built and standardized accounting, finance, HR, and social insurance systems.",
+          "Set up costing systems, cost aggregation, and debt control.",
+          "Built Power BI dashboards to track revenue, costs, and taxes.",
+          "Applied Excel, Power BI, and AI to automate and reconcile data.",
+          "Experienced in accounting and tax for e-commerce (Shopee, Lazada, TikTok Shop).",
+          "Handled accounting and tax service projects per client requirements."
+        ]
+      }
+    ]
+  },
+  "certificates": {
+    "title": "Certificates",
+    "intro": [
+      "Professional certifications help strengthen expertise in accounting, finance, and data analysis, while enhancing management and decision-making capabilities in a business environment."
+    ],
+    "list": [
+      { "id": "certificate-3", "title": "Tax Agent Practicing Certificate", "image": "/certificates/certificate-3.png" },
+      { "id": "certificate-2", "title": "Chief Accountant Certificate", "image": "/certificates/certificate-2.png" },
+      { "id": "certificate-1", "title": "Accounting Practice Certificate (APC)", "image": "/certificates/certificate-1.png" },
+      { "id": "certificate-4", "title": "Bachelor of Accounting", "image": "/certificates/certificate-4.png" },
+      { "id": "certificate-5", "title": "Bachelor of Accounting", "image": "/certificates/certificate-5.png" }
+    ]
+  },
+  "trustedBy": {
+    "heading": "Trusted By",
+    "description": "Proud to have worked alongside businesses and partners across accounting and tax.",
+    "partners": [
+      { "id": "partner-1", "name": "Partner 1", "image": "/partners/partner-1.png" },
+      { "id": "partner-2", "name": "Partner 2", "image": "/partners/partner-2.png" },
+      { "id": "partner-3", "name": "Partner 3", "image": "/partners/partner-3.png" },
+      { "id": "partner-4", "name": "Partner 4", "image": "/partners/partner-4.png" },
+      { "id": "partner-5", "name": "Partner 5", "image": "/partners/partner-5.png" },
+      { "id": "partner-6", "name": "Partner 6", "image": "/partners/partner-6.png" },
+      { "id": "partner-7", "name": "Partner 7", "image": "/partners/partner-7.png" }
+    ]
+  },
+  "contact": {
+    "title": "Let's Collaborate",
+    "description": "If you are looking for a partner in corporate accounting and finance, I am always ready to connect and build effective, lasting solutions together.",
+    "phone": "0703 495 205",
+    "email": "yenhong178@gmail.com",
+    "location": "Ho Chi Minh City",
+    "form": {
+      "namePlaceholder": "Full name",
+      "emailPlaceholder": "Email",
+      "phonePlaceholder": "Phone number",
+      "messagePlaceholder": "Your message",
+      "submit": "Send Message",
+      "errors": {
+        "nameRequired": "Full name is required.",
+        "emailRequired": "Email is required.",
+        "emailInvalid": "Please enter a valid email address.",
+        "phoneRequired": "Phone number is required.",
+        "phoneInvalid": "Please enter a valid phone number."
+      }
+    },
+    "toast": {
+      "success": "Thank you! Your message has been sent successfully.",
+      "genericError": "Something went wrong. Please try again.",
+      "sendFailed": "Failed to send message. Please try again later."
+    }
+  },
+  "backToTop": "Back to top"
+}

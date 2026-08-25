@@ -1,8 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { ChevronUp } from "lucide-react";
 import { scrollToY } from "../../lib/animations";
 
 function BackToTop() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ function BackToTop() {
     <button
       type="button"
       onClick={handleScrollToTop}
-      aria-label="Về đầu trang"
+      aria-label={t("backToTop")}
       style={{ touchAction: "manipulation" }}
       className={`fixed bottom-6 right-6 z-[60] flex h-12 w-12 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-all duration-300 hover:bg-gray-800 ${
         visible

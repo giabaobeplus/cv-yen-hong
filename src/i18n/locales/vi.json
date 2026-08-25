@@ -1,0 +1,187 @@
+{
+  "header": {
+    "nav": {
+      "about": "Giới thiệu",
+      "skills": "Kỹ năng",
+      "experience": "Kinh nghiệm",
+      "certificates": "Chứng chỉ",
+      "contact": "Liên hệ"
+    },
+    "downloadCv": "Tải CV"
+  },
+  "hero": {
+    "greeting": "👋 Xin chào, tôi là",
+    "name": "Trần Thị Yến Hồng",
+    "paragraph1": "Cử nhân Kế toán tốt nghiệp trường Đại học Kinh tế TP. Hồ Chí Minh (UEH), với hơn 5 năm kinh nghiệm trong lĩnh vực kế toán, thuế và quản lý tài chính doanh nghiệp.",
+    "paragraph2": "Mong muốn phát triển sự nghiệp lên vị trí Kế toán trưởng hoặc Trưởng phòng Tài chính, tập trung vào kiểm soát tài chính, tối ưu vận hành và tăng trưởng bền vững cho doanh nghiệp.",
+    "hireMe": "Liên Hệ Ngay",
+    "linkedin": "LinkedIn"
+  },
+  "about": {
+    "title": "Giới Thiệu",
+    "paragraphs": [
+      [
+        { "text": "Trưởng phòng Dịch vụ Kế toán với " },
+        { "text": "hơn 5 năm kinh nghiệm", "bold": true },
+        { "text": " trong lĩnh vực kế toán, thuế, kiểm toán và dịch vụ kế toán doanh nghiệp." }
+      ],
+      [
+        { "text": "Có kinh nghiệm làm việc với doanh nghiệp thuộc nhiều lĩnh vực khác nhau như thương mại, sản xuất, dịch vụ, FDI và thương mại điện tử, đồng thời thực hiện quyết toán thuế cho các doanh nghiệp có doanh thu hàng năm lên đến " },
+        { "text": "500 tỷ đồng", "bold": true },
+        { "text": "." }
+      ]
+    ],
+    "stats": [
+      { "value": 500, "suffix": "", "label": "Tỷ đồng đã quyết toán thuế" },
+      { "value": 5, "suffix": "+", "label": "Năm kinh nghiệm chuyên môn" },
+      { "value": 30, "suffix": "+", "label": "Khách hàng & doanh nghiệp đã phục vụ" }
+    ]
+  },
+  "skills": {
+    "title": "Kỹ Năng Chuyên Môn",
+    "intro": [
+      [
+        { "text": "Sở hữu " },
+        { "text": "Chứng chỉ hành nghề Kế toán (APC)", "bold": true },
+        { "text": " – Bộ Tài chính cấp (2025), đủ điều kiện đảm nhiệm vị trí Kế toán trưởng." }
+      ],
+      [
+        { "text": "Hiện đang theo học chứng chỉ " },
+        { "text": "Kiểm toán viên hành nghề (CPA)", "bold": true },
+        { "text": " nhằm nâng cao chuyên môn về kiểm soát rủi ro và chuẩn mực tài chính." }
+      ]
+    ],
+    "list": [
+      {
+        "icon": "FileBarChart2",
+        "title": "Báo Cáo Tài Chính",
+        "description": "Lập và phân tích báo cáo tài chính, giúp doanh nghiệp theo dõi hiệu quả hoạt động và tối ưu chi phí vận hành."
+      },
+      {
+        "icon": "ListChecks",
+        "title": "Kiểm Soát Nội Bộ",
+        "description": "Xây dựng quy trình kiểm soát nội bộ nhằm giảm thiểu rủi ro tài chính và tăng tính minh bạch trong hoạt động doanh nghiệp."
+      },
+      {
+        "icon": "Receipt",
+        "title": "Tuân Thủ Thuế",
+        "description": "Theo dõi và thực hiện nghĩa vụ thuế, đảm bảo kê khai và lưu trữ chính xác đồng thời tối ưu hiệu quả tài chính."
+      },
+      {
+        "icon": "Users",
+        "title": "Quản Lý Kiểm Toán",
+        "description": "Quản lý đội ngũ kế toán theo hướng chuyên nghiệp, thúc đẩy hiệu suất làm việc và tinh thần trách nhiệm cao."
+      }
+    ]
+  },
+  "experience": {
+    "title": "Kinh Nghiệm Làm Việc",
+    "intro": "Nhiều năm kinh nghiệm thực tiễn trong lĩnh vực kế toán và tài chính doanh nghiệp, tập trung vào kiểm soát vận hành, quản lý thuế và xây dựng hệ thống kế toán hiệu quả."
+  },
+  "journey": {
+    "eyebrow": "Hành Trình Phát Triển Sự Nghiệp",
+    "heading": "Trưởng Thành Qua Từng Giai Đoạn Sự Nghiệp",
+    "description": "Chuyên sâu về báo cáo tài chính, thuế và kiểm soát vận hành. Có kinh nghiệm tối ưu chi phí và xây dựng hệ thống kế toán.",
+    "list": [
+      {
+        "number": "1",
+        "company": "BBF Vietnam Co., Ltd",
+        "role": "Chuyên viên Kế toán",
+        "period": "08/2019 – 01/2022",
+        "bullets": [
+          "Lập báo cáo thuế (GTGT, TNCN, TNDN) và báo cáo tài chính năm.",
+          "Hạch toán kế toán và kiểm tra tính hợp lệ của chứng từ.",
+          "Theo dõi công nợ phải thu và phải trả.",
+          "Xử lý các giao dịch ngân hàng.",
+          "Tính lương, bảo hiểm xã hội và thuế thu nhập cá nhân.",
+          "Hỗ trợ công tác kiểm toán: kiểm kê, thư xác nhận và chuẩn bị hồ sơ."
+        ]
+      },
+      {
+        "number": "2",
+        "company": "Tax Uy Danh Consulting Services Co., Ltd",
+        "role": "Trưởng phòng Nhân sự / Kế toán tổng hợp",
+        "period": "02/2022 – 04/2023",
+        "bullets": [
+          "Lập báo cáo tài chính, báo cáo thuế và sổ sách kế toán tổng hợp.",
+          "Rà soát báo cáo thuế, phát hiện và xử lý rủi ro về thuế.",
+          "Tư vấn khách hàng về các vấn đề thuế và tối ưu chi phí.",
+          "Tham gia xây dựng quy trình kế toán và thuế.",
+          "Hỗ trợ đào tạo và kiểm soát chất lượng cho đội ngũ kế toán."
+        ]
+      },
+      {
+        "number": "3",
+        "company": "PAC Pham Gia Co., Ltd",
+        "role": "Trưởng phòng Dịch vụ Kế toán",
+        "period": "05/2023 – Hiện tại",
+        "bullets": [
+          "Quản lý đội ngũ 5 nhân sự, phụ trách dịch vụ kế toán và thuế cho khoảng 30 khách hàng.",
+          "Rà soát báo cáo tài chính, kê khai và quyết toán thuế cho các doanh nghiệp quy mô lớn (lên đến 500 tỷ đồng/năm).",
+          "Làm việc với cơ quan thuế trong các đợt thanh tra và quyết toán.",
+          "Xử lý hoàn thuế, giao dịch liên kết và thuế TNCN cho người lao động nước ngoài.",
+          "Kiểm soát rủi ro thuế và tư vấn tối ưu chi phí.",
+          "Xây dựng và chuẩn hóa hệ thống kế toán, tài chính, nhân sự và bảo hiểm xã hội.",
+          "Thiết lập hệ thống tính giá thành, tổng hợp chi phí và kiểm soát công nợ.",
+          "Xây dựng dashboard Power BI theo dõi doanh thu, chi phí và thuế.",
+          "Ứng dụng Excel, Power BI và AI để tự động hóa và đối chiếu dữ liệu.",
+          "Có kinh nghiệm kế toán và thuế cho thương mại điện tử (Shopee, Lazada, TikTok Shop).",
+          "Triển khai các dự án dịch vụ kế toán, thuế theo yêu cầu khách hàng."
+        ]
+      }
+    ]
+  },
+  "certificates": {
+    "title": "Chứng Chỉ",
+    "intro": [
+      "Các chứng chỉ chuyên môn giúp củng cố kiến thức về kế toán, tài chính và phân tích dữ liệu, đồng thời nâng cao năng lực quản lý và ra quyết định trong môi trường doanh nghiệp."
+    ],
+    "list": [
+      { "id": "certificate-3", "title": "Chứng chỉ hành nghề Đại lý thuế", "image": "/certificates/certificate-3.png" },
+      { "id": "certificate-2", "title": "Chứng chỉ Kế toán trưởng", "image": "/certificates/certificate-2.png" },
+      { "id": "certificate-1", "title": "Chứng chỉ hành nghề Kế toán (APC)", "image": "/certificates/certificate-1.png" },
+      { "id": "certificate-4", "title": "Bằng Cử nhân Kế toán", "image": "/certificates/certificate-4.png" },
+      { "id": "certificate-5", "title": "Bằng Cử nhân Kế toán", "image": "/certificates/certificate-5.png" }
+    ]
+  },
+  "trustedBy": {
+    "heading": "Đối Tác Tin Cậy",
+    "description": "Tự hào đã đồng hành cùng nhiều doanh nghiệp và đối tác trong lĩnh vực kế toán, thuế.",
+    "partners": [
+      { "id": "partner-1", "name": "Đối tác 1", "image": "/partners/partner-1.png" },
+      { "id": "partner-2", "name": "Đối tác 2", "image": "/partners/partner-2.png" },
+      { "id": "partner-3", "name": "Đối tác 3", "image": "/partners/partner-3.png" },
+      { "id": "partner-4", "name": "Đối tác 4", "image": "/partners/partner-4.png" },
+      { "id": "partner-5", "name": "Đối tác 5", "image": "/partners/partner-5.png" },
+      { "id": "partner-6", "name": "Đối tác 6", "image": "/partners/partner-6.png" },
+      { "id": "partner-7", "name": "Đối tác 7", "image": "/partners/partner-7.png" }
+    ]
+  },
+  "contact": {
+    "title": "Cùng Hợp Tác",
+    "description": "Nếu bạn đang tìm kiếm một đối tác trong lĩnh vực kế toán và tài chính doanh nghiệp, tôi luôn sẵn sàng kết nối và cùng xây dựng những giải pháp hiệu quả, bền vững.",
+    "phone": "0703 495 205",
+    "email": "yenhong178@gmail.com",
+    "location": "TP. Hồ Chí Minh",
+    "form": {
+      "namePlaceholder": "Họ và tên",
+      "emailPlaceholder": "Email",
+      "phonePlaceholder": "Số điện thoại",
+      "messagePlaceholder": "Lời nhắn của bạn",
+      "submit": "Gửi Tin Nhắn",
+      "errors": {
+        "nameRequired": "Vui lòng nhập họ và tên.",
+        "emailRequired": "Vui lòng nhập email.",
+        "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ.",
+        "phoneRequired": "Vui lòng nhập số điện thoại.",
+        "phoneInvalid": "Vui lòng nhập số điện thoại hợp lệ."
+      }
+    },
+    "toast": {
+      "success": "Cảm ơn bạn! Tin nhắn của bạn đã được gửi thành công.",
+      "genericError": "Đã có lỗi xảy ra. Vui lòng thử lại.",
+      "sendFailed": "Gửi tin nhắn thất bại. Vui lòng thử lại sau."
+    }
+  },
+  "backToTop": "Về đầu trang"
+}

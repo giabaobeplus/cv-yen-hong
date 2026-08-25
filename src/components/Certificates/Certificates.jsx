@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Award, X } from "lucide-react";
 import { ANIM, fadeUpVars } from "../../lib/animations";
-import { certificatesIntro, certificatesList } from "../../data/certificates";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -173,8 +173,12 @@ function CertificateLightbox({ items, activeIndex, onClose }) {
 }
 
 function Certificates() {
+    const { t } = useTranslation();
     const sectionRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(null);
+
+    const certificatesIntro = t("certificates.intro", { returnObjects: true });
+    const certificatesList = t("certificates.list", { returnObjects: true });
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -203,7 +207,7 @@ function Certificates() {
                 <h2
                     className={`${ANIM.fadeUp} mb-6 text-[28px] font-extrabold leading-[130%] text-white sm:text-[32px] md:text-[36px]`}
                 >
-                    Certificates
+                    {t("certificates.title")}
                 </h2>
 
                 <div className="mb-12 space-y-5 sm:mb-16">

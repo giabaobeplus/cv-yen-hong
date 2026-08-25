@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 import {
     FileBarChart2,
     ListChecks,
@@ -7,7 +8,6 @@ import {
     Users,
 } from "lucide-react";
 import { ANIM, fadeUpVars } from "../../lib/animations";
-import { skillsIntro, skillsList } from "../../data/skills";
 
 const ICONS = {
     FileBarChart2,
@@ -17,7 +17,11 @@ const ICONS = {
 };
 
 function Skills() {
+    const { t } = useTranslation();
     const sectionRef = useRef(null);
+
+    const skillsIntro = t("skills.intro", { returnObjects: true });
+    const skillsList = t("skills.list", { returnObjects: true });
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -43,7 +47,7 @@ function Skills() {
                 <h2
                     className={`${ANIM.fadeUp} mb-8 text-[28px] font-extrabold leading-[130%] text-[#1F1F1F] sm:text-[32px] md:text-[36px]`}
                 >
-                    Professional Skills
+                    {t("skills.title")}
                 </h2>
 
                 <div className="mb-14 space-y-5 sm:mb-20">

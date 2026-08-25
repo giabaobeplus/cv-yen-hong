@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 import { ANIM, fadeUpVars } from "../../lib/animations";
-import { trustedByIntro, partnersList } from "../../data/partners";
 
 function PartnerLogo({ image, name }) {
     const [failed, setFailed] = useState(false);
@@ -26,11 +26,15 @@ function PartnerLogo({ image, name }) {
 }
 
 function TrustedBy() {
+    const { t } = useTranslation();
     const sectionRef = useRef(null);
     const trackRef = useRef(null);
     const setARef = useRef(null);
     const setBRef = useRef(null);
     const tweenRef = useRef(null);
+
+    const trustedByIntro = t("trustedBy", { returnObjects: true });
+    const partnersList = trustedByIntro.partners;
 
     useEffect(() => {
         const ctx = gsap.context(() => {
