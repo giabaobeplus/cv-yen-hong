@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES } from "../../i18n";
+import { switchLanguageSmooth } from "../../lib/animations";
 
 /**
  * Toggle chuyển đổi ngôn ngữ VI / EN dạng pill, có khối nền trượt (thumb)
@@ -18,7 +19,9 @@ function LanguageToggle({ className = "", scrolled = false }) {
 
   const handleSelect = (lang) => {
     if (lang === currentLang) return;
-    i18n.changeLanguage(lang);
+    // Fade + giữ progress scroll + refresh ScrollTrigger để không bị giật
+    // khi chiều dài text VI/EN khác nhau.
+    switchLanguageSmooth(i18n, lang);
   };
 
   return (
@@ -27,11 +30,10 @@ function LanguageToggle({ className = "", scrolled = false }) {
       aria-label="Language switcher"
       className={`relative inline-flex h-9 w-[84px] shrink-0 items-center rounded-full p-1 shadow-inner transition-colors duration-300 ${
         scrolled
-          ? "bg-gray-100" // header trắng → nền xám nhạt để không bị "mất" bg
-          : "bg-white/70" // header hồng → nền trắng mờ như cũ
+          ? "bg-gray-100"
+          : "bg-white/70"
       } ${className}`}
     >
-      {/* Khối nền trượt theo ngôn ngữ đang active */}
       <span
         aria-hidden="true"
         className={`absolute top-1 h-7 w-10 rounded-full bg-gray-900 shadow-sm transition-transform duration-300 ease-out ${

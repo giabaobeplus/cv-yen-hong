@@ -36,7 +36,7 @@ const CONTAINER_HEIGHT_BUFFER = 64;
 const DEFAULT_CONTAINER_HEIGHT = 580;
 
 function Journey() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const sectionRef = useRef(null);
 
     const journeyIntro = t("journey", { returnObjects: true });
@@ -58,6 +58,7 @@ function Journey() {
     // Measures the real rendered height of each card (title + role + bullets)
     // and grows the container to fit the tallest one, so content can never
     // overflow into the next section — no matter how long the copy gets.
+    // Re-measure khi đổi ngôn ngữ (text VI/EN dài khác nhau → chiều cao card đổi).
     useLayoutEffect(() => {
         const measure = () => {
             if (window.innerWidth < 1024) return;
@@ -93,7 +94,7 @@ function Journey() {
             resizeObserver.disconnect();
             window.removeEventListener("resize", measure);
         };
-    }, []);
+    }, [i18n.language]);
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
