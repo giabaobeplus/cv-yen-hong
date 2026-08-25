@@ -12,8 +12,7 @@
   "hero": {
     "greeting": "👋 Hello, I’m",
     "name": "Tran Thi Yen Hong",
-    "paragraph1": "A Bachelor of Accounting graduate from the University of Economics Ho Chi Minh City (UEH), with over 5 years of experience in accounting, taxation, and corporate financial management.",
-    "paragraph2": "Aspiring to advance my career as a Chief Accountant or Finance Manager, with a strong focus on financial control, operational optimization, and sustainable business growth.",
+    "paragraph1": "Accountant with over 8 years of experience in accounting, taxation, and corporate risk control, holding a Bachelor's degree in Accounting from the University of Economics Ho Chi Minh City (UEH). Currently managing, coordinating, and training an accounting team, responsible for building operational processes, overseeing financial reporting, tax finalization, and ensuring compliance with applicable regulations — helping the company optimize operating costs and achieve sustainable growth.",
     "hireMe": "Hire Me",
     "linkedin": "LinkedIn"
   },
@@ -69,8 +68,8 @@
       },
       {
         "icon": "Users",
-        "title": "Audit Leadership",
-        "description": "Managing accounting teams with a professional approach, driving performance and a strong sense of responsibility."
+        "title": "Human Resources Management",
+        "description": "Manage human resources professionally, fostering productivity and a strong sense of responsibility."
       }
     ]
   },
@@ -100,7 +99,7 @@
       {
         "number": "2",
         "company": "Tax Uy Danh Consulting Services Co., Ltd",
-        "role": "HR Manager / General Accountant",
+        "role": "Service Manager / General Accountant",
         "period": "02/2022 – 04/2023",
         "bullets": [
           "Prepared financial statements, tax reports, and general accounting records.",

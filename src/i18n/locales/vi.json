@@ -12,8 +12,7 @@
   "hero": {
     "greeting": "👋 Xin chào, tôi là",
     "name": "Trần Thị Yến Hồng",
-    "paragraph1": "Cử nhân Kế toán tốt nghiệp trường Đại học Kinh tế TP. Hồ Chí Minh (UEH), với hơn 5 năm kinh nghiệm trong lĩnh vực kế toán, thuế và quản lý tài chính doanh nghiệp.",
-    "paragraph2": "Mong muốn phát triển sự nghiệp lên vị trí Kế toán trưởng hoặc Trưởng phòng Tài chính, tập trung vào kiểm soát tài chính, tối ưu vận hành và tăng trưởng bền vững cho doanh nghiệp.",
+    "paragraph1": "Kế toán với hơn 8 năm kinh nghiệm trong lĩnh vực kế toán, thuế và kiểm soát rủi ro doanh nghiệp, tốt nghiệp Cử nhân Kế toán tại Trường Đại học Kinh tế TP. Hồ Chí Minh (UEH). Hiện đang quản lý, điều phối và đào tạo đội ngũ nhân sự kế toán, chịu trách nhiệm xây dựng quy trình, kiểm soát báo cáo tài chính, quyết toán thuế và đảm bảo tuân thủ các quy định pháp luật hiện hành, giúp doanh nghiệp tối ưu chi phí vận hành và tăng trưởng bền vững.",
     "hireMe": "Liên Hệ Ngay",
     "linkedin": "LinkedIn"
   },
@@ -26,7 +25,7 @@
         { "text": " trong lĩnh vực kế toán, thuế, kiểm toán và dịch vụ kế toán doanh nghiệp." }
       ],
       [
-        { "text": "Có kinh nghiệm làm việc với doanh nghiệp thuộc nhiều lĩnh vực khác nhau như thương mại, sản xuất, dịch vụ, FDI và thương mại điện tử, đồng thời thực hiện quyết toán thuế cho các doanh nghiệp có doanh thu hàng năm lên đến " },
+        { "text": "Có kinh nghiệm làm việc với đa dạng loại hình doanh nghiệp thuộc nhiều lĩnh vực khác nhau như sản xuất, thương mại, dịch vụ và thương mại điện tử; từng thực hiện quyết toán thuế cho nhiều doanh nghiệp có doanh thu hàng năm lên đến " },
         { "text": "500 tỷ đồng", "bold": true },
         { "text": "." }
       ]
@@ -69,8 +68,8 @@
       },
       {
         "icon": "Users",
-        "title": "Quản Lý Kiểm Toán",
-        "description": "Quản lý đội ngũ kế toán theo hướng chuyên nghiệp, thúc đẩy hiệu suất làm việc và tinh thần trách nhiệm cao."
+        "title": "Quản Lý Nhân Sự",
+        "description": "Quản lý đội ngũ nhân sự theo hướng chuyên nghiệp, thúc đẩy hiệu suất làm việc và tinh thần trách nhiệm cao."
       }
     ]
   },
@@ -100,7 +99,7 @@
       {
         "number": "2",
         "company": "Tax Uy Danh Consulting Services Co., Ltd",
-        "role": "Trưởng phòng Nhân sự / Kế toán tổng hợp",
+        "role": "Trưởng phòng Dịch vụ / Kế toán tổng hợp",
         "period": "02/2022 – 04/2023",
         "bullets": [
           "Lập báo cáo tài chính, báo cáo thuế và sổ sách kế toán tổng hợp.",

@@ -82,15 +82,9 @@ function Hero() {
           </h1>
 
           <p
-            className={`${ANIM.fadeUp} mb-4 text-base font-normal leading-[150%] text-[#1F1F1F] sm:text-[20px]`}
-          >
-            {t("hero.paragraph1")}
-          </p>
-
-          <p
             className={`${ANIM.fadeUp} mb-8 text-base font-normal leading-[150%] text-[#1F1F1F] sm:text-[20px]`}
           >
-            {t("hero.paragraph2")}
+            {t("hero.paragraph1")}
           </p>
 
           {/* CTA Buttons */}
