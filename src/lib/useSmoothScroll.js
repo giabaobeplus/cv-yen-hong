@@ -8,7 +8,6 @@ import "./animations"; // đảm bảo gsap + ScrollTrigger + ScrollSmoother đ�
 // fixed vẫn hoạt động bình thường, không cần sửa CSS của 2 component đó.
 export function useSmoothScroll() {
   useEffect(() => {
-    // Tôn trọng lựa chọn "giảm hiệu ứng chuyển động" của người dùng, không ép cuộn mượt
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -19,9 +18,14 @@ export function useSmoothScroll() {
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
       smooth: 1.2, // độ trễ (giây) khi cuộn bằng chuột/trackpad trên desktop
-      // smoothTouch để mặc định (0 = tắt) — giữ nguyên cảm giác cuộn quán
-      // tính gốc của trình duyệt trên mobile, đúng tinh thần comment cũ:
-      // "Native smooth scroll — works reliably on real mobile devices".
+      // LƯU Ý: smoothTouch: 0 (mặc định) không chỉ tắt smoothing khi vuốt
+      // bằng tay — nó còn khiến smoother.scrollTo() (dùng bởi BackToTop và
+      // các link neo trong Header) bỏ qua hoàn toàn easing trên thiết bị
+      // cảm ứng thật, nên bấm vào là nhảy tới đích ngay lập tức thay vì
+      // trượt mượt. Set một giá trị nhỏ để bật lại easing cho scrollTo,
+      // trong khi vẫn giữ cảm giác vuốt tay gần với native (0.1 = độ trễ
+      // rất nhẹ, không gây "trễ tay" khi kéo).
+      smoothTouch: 0.1,
     });
 
     return () => smoother.kill();

@@ -6,11 +6,6 @@ import { trustedByIntro, partnersList } from "../../data/partners";
 function PartnerLogo({ image, name }) {
     const [failed, setFailed] = useState(false);
 
-    // Bọc mỗi logo trong 1 card nền nhẹ, kích thước cố định + padding cố định.
-    // Vì các ảnh gốc có tỉ lệ rất khác nhau (chữ ký mảnh, logo tròn, wordmark
-    // ngang...) nên nếu chỉ căn giữa trong khung trong suốt, mắt sẽ thấy
-    // khoảng trắng quanh logo không đều. Có nền + viền + padding cố định thì
-    // mắt neo theo viền card (luôn bằng nhau) thay vì neo theo mép logo.
     return (
         <div className="flex h-24 w-40 shrink-0 items-center justify-center rounded-2xl border border-gray-100 bg-[#FAFAFA] p-3 sm:h-28 sm:w-52 sm:p-4 lg:h-32 lg:w-60 lg:p-5">
             {failed ? (
@@ -33,10 +28,6 @@ function PartnerLogo({ image, name }) {
 function TrustedBy() {
     const sectionRef = useRef(null);
     const trackRef = useRef(null);
-    // Ref cho set thứ 1 và thứ 2 để đo khoảng cách pixel thật giữa 2 điểm
-    // bắt đầu — không dùng xPercent: -50 vì track nhân đôi có thêm 1 gap
-    // ở ranh giới giữa 2 set, khiến 50% width lệch khỏi 1-set-width thật
-    // (đây chính là nguyên nhân giật mỗi lần loop reset).
     const setARef = useRef(null);
     const setBRef = useRef(null);
     const tweenRef = useRef(null);
@@ -51,13 +42,11 @@ function TrustedBy() {
                 },
             });
 
-            const SPEED_PX_PER_SEC = 60; // tốc độ cố định, set càng rộng thì 1 vòng càng lâu nhưng tốc độ trượt luôn đều
+            const SPEED_PX_PER_SEC = 60;
 
             const buildLoop = () => {
                 if (!trackRef.current || !setARef.current || !setBRef.current) return;
 
-                // Khoảng cách pixel thật từ mép trái set A đến mép trái set B.
-                // Đây là "1 đơn vị lặp lại" chính xác, bao gồm cả gap ở ranh giới.
                 const distance =
                     setBRef.current.getBoundingClientRect().left -
                     setARef.current.getBoundingClientRect().left;
@@ -78,8 +67,24 @@ function TrustedBy() {
             buildLoop();
 
             // Kích thước card cố định (không phụ thuộc ảnh gốc) nên load ảnh
-            // không làm lệch layout, chỉ cần đo lại khi viewport đổi breakpoint.
-            const handleResize = () => buildLoop();
+            // không làm lệch layout, chỉ cần đo lại khi viewport đổi breakpoint
+            // (đổi CHIỀU RỘNG thật sự, ví dụ xoay ngang/dọc hoặc resize cửa sổ
+            // trên desktop).
+            //
+            // BUG đã fix: trên mobile thật, mỗi lần scroll thì thanh địa chỉ
+            // của trình duyệt tự ẩn/hiện, khiến chiều CAO viewport thay đổi
+            // và bắn ra sự kiện "resize" — dù chiều rộng không đổi. Trước đây
+            // handleResize gọi buildLoop() vô điều kiện mỗi lần "resize" nên
+            // cứ scroll là animation bị kill + gsap.set(x: 0) reset về đầu,
+            // gây cảm giác "chạy lại từ đầu" liên tục. Giờ chỉ rebuild khi
+            // chiều RỘNG thật sự thay đổi, bỏ qua các resize chỉ đổi chiều cao.
+            let previousWidth = window.innerWidth;
+            const handleResize = () => {
+                const currentWidth = window.innerWidth;
+                if (currentWidth === previousWidth) return;
+                previousWidth = currentWidth;
+                buildLoop();
+            };
             window.addEventListener("resize", handleResize);
 
             return () => {
@@ -90,8 +95,24 @@ function TrustedBy() {
         return () => ctx.revert();
     }, []);
 
-    const handleMouseEnter = () => tweenRef.current?.pause();
-    const handleMouseLeave = () => tweenRef.current?.play();
+    // Trên thiết bị cảm ứng (mobile/tablet) không có khái niệm "hover" thật —
+    // trình duyệt vẫn có thể bắn mouseenter khi chạm và không bắn mouseleave
+    // tương ứng cho tới lần chạm tiếp theo, khiến marquee bị "kẹt" tạm dừng
+    // sau khi lướt qua. Chỉ bật pause-on-hover cho thiết bị thật sự hỗ trợ
+    // hover bằng con trỏ (chuột/trackpad) — trên mobile thì bỏ qua, để
+    // marquee luôn chạy liên tục như bình thường.
+    const supportsHover =
+        typeof window !== "undefined" &&
+        window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    const handleMouseEnter = () => {
+        if (!supportsHover) return;
+        tweenRef.current?.pause();
+    };
+    const handleMouseLeave = () => {
+        if (!supportsHover) return;
+        tweenRef.current?.play();
+    };
 
     return (
         <section
@@ -118,7 +139,6 @@ function TrustedBy() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                {/* Fade mờ 2 bên mép để dải logo trông liền mạch, không bị cắt cụt */}
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent sm:w-28 lg:w-40" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent sm:w-28 lg:w-40" />
 
