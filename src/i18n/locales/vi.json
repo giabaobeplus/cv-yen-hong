@@ -21,7 +21,7 @@
     "paragraphs": [
       [
         { "text": "Trưởng phòng Dịch vụ Kế toán với " },
-        { "text": "hơn 5 năm kinh nghiệm", "bold": true },
+        { "text": "hơn 8 năm kinh nghiệm", "bold": true },
         { "text": " trong lĩnh vực kế toán, thuế, kiểm toán và dịch vụ kế toán doanh nghiệp." }
       ],
       [
@@ -32,7 +32,7 @@
     ],
     "stats": [
       { "value": 500, "suffix": "", "label": "Tỷ đồng đã quyết toán thuế" },
-      { "value": 5, "suffix": "+", "label": "Năm kinh nghiệm chuyên môn" },
+      { "value": 8, "suffix": "+", "label": "Năm kinh nghiệm chuyên môn" },
       { "value": 30, "suffix": "+", "label": "Khách hàng & doanh nghiệp đã phục vụ" }
     ]
   },

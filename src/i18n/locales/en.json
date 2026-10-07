@@ -21,7 +21,7 @@
     "paragraphs": [
       [
         { "text": "Head of Accounting Services with " },
-        { "text": "over 5 years of experience", "bold": true },
+        { "text": "over 8 years of experience", "bold": true },
         { "text": " in accounting, taxation, auditing, and corporate accounting services." }
       ],
       [
@@ -32,7 +32,7 @@
     ],
     "stats": [
       { "value": 500, "suffix": "", "label": "Billion VND in tax finalization" },
-      { "value": 5, "suffix": "+", "label": "Years of professional experience" },
+      { "value": 8, "suffix": "+", "label": "Years of professional experience" },
       { "value": 30, "suffix": "+", "label": "Clients & businesses served" }
     ]
   },

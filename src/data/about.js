@@ -7,7 +7,7 @@ export const aboutParagraphs = [
       text: "Head of Accounting Services with ",
     },
     {
-      text: "over 5 years of experience",
+      text: "over 8 years of experience",
       bold: true,
     },
     {
@@ -36,7 +36,7 @@ export const aboutStats = [
         label: "Billion VND in tax finalization",
     },
     {
-        value: 5,
+        value: 8,
         suffix: "+",
         label: "Years of professional experience",
     },

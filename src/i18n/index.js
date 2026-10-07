@@ -4,9 +4,8 @@ import { initReactI18next } from "react-i18next";
 import en from "./locales/en.json";
 import vi from "./locales/vi.json";
 
-// Key dùng để lưu ngôn ngữ đã chọn vào localStorage, để reload trang vẫn
-// giữ đúng ngôn ngữ người dùng đã chọn trước đó.
-export const LANGUAGE_STORAGE_KEY = "cv-yen-hong-lang";
+// Đổi key storage sang v2 để reset cache "en" cũ trên trình duyệt
+export const LANGUAGE_STORAGE_KEY = "cv-yen-hong-lang-v2";
 
 export const SUPPORTED_LANGUAGES = ["vi", "en"];
 export const DEFAULT_LANGUAGE = "vi";
@@ -21,11 +20,7 @@ function getInitialLanguage() {
     // localStorage có thể bị chặn (private mode/…) — bỏ qua, dùng mặc định.
   }
 
-  // Không có gì lưu trước đó: đoán theo ngôn ngữ trình duyệt, ưu tiên vi.
-  const browserLang = window.navigator?.language?.toLowerCase() ?? "";
-  if (browserLang.startsWith("vi")) return "vi";
-  if (browserLang.startsWith("en")) return "en";
-
+  // Mặc định luôn ưu tiên tiếng Việt, không tự nhảy sang tiếng Anh theo trình duyệt
   return DEFAULT_LANGUAGE;
 }
 
@@ -45,8 +40,7 @@ i18n.use(initReactI18next).init({
   },
 });
 
-// Mỗi lần đổi ngôn ngữ (kể cả gọi trực tiếp i18n.changeLanguage ở nơi khác)
-// đều lưu lại vào localStorage để lần sau reload vẫn giữ nguyên.
+// Mỗi lần đổi ngôn ngữ đều lưu lại vào localStorage để giữ lựa chọn khi reload
 i18n.on("languageChanged", (lng) => {
   try {
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, lng);
@@ -59,7 +53,7 @@ i18n.on("languageChanged", (lng) => {
   }
 });
 
-// Set thuộc tính lang cho <html> ngay từ đầu (trước khi React render).
+// Set thuộc tính lang cho <html> ngay từ đầu (trước khi React render)
 if (typeof document !== "undefined") {
   document.documentElement.lang = i18n.language;
 }
